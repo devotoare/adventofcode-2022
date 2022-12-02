@@ -51,11 +51,9 @@ func main() {
 	drawing["B"] = 2
 	drawing["C"] = 3
 
-	for i, line := range fileLines {
+	for _, line := range fileLines {
 		thisGame := strings.Split(line, " ")
-		thisLine := processPartTwo(thisGame[0], thisGame[1], winning, losing, drawing)
-		totalScore += thisLine
-		fmt.Printf("%d = %d \n", i+1, thisLine)
+		totalScore += processPartTwo(thisGame[0], thisGame[1], winning, losing, drawing)
 	}
 
 	fmt.Println(totalScore)
