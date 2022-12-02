@@ -17,21 +17,20 @@ func main() {
 		panic(err)
 	}
 
-	defer readFile.Close()
-
 	fileScanner := bufio.NewScanner(readFile)
-	fileScanner.Split(bufio.ScanLines)
 	var fileLines []string
 
 	for fileScanner.Scan() {
 		fileLines = append(fileLines, fileScanner.Text())
 	}
 
+	readFile.Close()
+
 	currTotal := 0
 	var packs []int
 
 	for _, line := range fileLines {
-		if len(line) > 0 {
+		if line != "" {
 			value, err := strconv.Atoi(line)
 			if err != nil {
 				panic(err)
